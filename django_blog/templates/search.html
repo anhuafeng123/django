@@ -1,0 +1,36 @@
+{% extends 'list.html' %}
+
+
+
+{% block title %}
+查询结果
+{% endblock %}
+{% block search %}
+{% for post in post_list%}
+    <article class="excerpt excerpt-1" style="">
+                    <a class="focus" href="{% url 'blog:show_x' post.id%}" title="{{ post.title }}" target="_blank"><img class="thumb"
+                                                                                            data-original="/{{ post.cover }}"
+                                                                                            src="/{{ post.cover }}"
+                                                                                            alt="{{ post.title }}"
+                                                                                            style="display: inline;"></a>
+                    <header><a class="cat" href="{% url 'blog:show_x' post.id%}" title="知奇课堂-博客">知奇课堂-博客<i></i></a>
+                        <h2><a href="{% url 'blog:show_x' post.id%}" title="{{ post.title }}" target="_blank">{{ post.title }}</a>
+                        </h2>
+                    </header>
+                    <p class="meta">
+                        <time class="time"><i class="glyphicon glyphicon-time"></i> {{ post.pub_date }}
+                        </time>
+                        <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{ post.views }}</span> <a
+                            class="comment"
+                            href="{% url 'blog:show_x' post.id%}"
+                            title="评论"
+                            target="_blank"><i
+                            class="glyphicon glyphicon-comment"></i> {{ post.comment_set.count }}</a>
+                    </p>
+                    <p class="note">
+                        {{ post.content }}</p>
+                </article>
+
+{% endfor %}
+
+{% endblock %}
